@@ -35,8 +35,8 @@ import {
   withI18nSupport,
   withIncrementalHydration,
   withNoHttpTransferCache
-} from "./chunk-4SFFABUB.js";
-import "./chunk-EFU35C33.js";
+} from "./chunk-KYWV7RT7.js";
+import "./chunk-6SEHN44D.js";
 import "./chunk-WDMUDEB6.js";
 export {
   BrowserModule,
