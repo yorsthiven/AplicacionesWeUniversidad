@@ -1,0 +1,31 @@
+<div
+  id="menu"
+  class="bg-gray-900 min-h-screen z-10 text-slate-300 w-80 fixed left-0 h-screen overflow-y-scroll"
+>
+  <div id="logo" class="my-4 px-6">
+    <h1 class="text-lg md:text-2xl font-bold text-white">
+      {{ env.companyName }}<span class="text-blue-500">{{ env.companyName2 }}</span
+      >.
+    </h1>
+    <p class="text-slate-500 text-sm">{{ env.companySlogan }}</p>
+  </div>
+  <!-- VAlidacion para saber si esta o no Logueado -->
+
+      @if (!loginService.logueado()) {
+        <!-- Para loguearse -->
+        <div>
+          <!-- side-menu Logueado cabecera -->
+          <login-component />
+          <!-- side-menu Logueado opciones -->
+          <side-menu-options-logueado-component />
+        </div>
+      }@else {
+        <!-- Logueado -->
+        <div>
+          <!-- side-menu cabecera -->
+          <side-menu-component />
+          <!-- side-menu opciones-->
+          <side-menu-options-component />
+        </div>
+      }
+</div>
