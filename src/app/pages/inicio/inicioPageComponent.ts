@@ -15,41 +15,42 @@ export class InicioPageComponent {
 
   username = signal('');
   password = signal('');
+  loading = signal(false);
 
   // Señales para estado de login
   private validUser = signal('admin');
   private validPass = signal('1234');
-  private error = signal(false);
+  public error = signal(false);
 
   constructor(private router: Router) {
     this.loginService.logueado.set(false);
+    console.log(this.error());
   }
-
-  onSearch(query: string) {
-    this.username.set(query);
-  }
-
-  onSearch2(query: string) {
-    this.password.set(query);
-  }
-
-  ruta = signal('');
 
   onLogin(event: Event) {
+
     event.preventDefault();
-    if (this.username() === this.validUser() && this.password() === this.validPass()) {
-      this.error.set(false);
-      // Aquí puedes redirigir o mostrar el menú lateral
-      // this.ruta.set('/dashboard/home');
-      this.loginService.logueado.set(true);
-      this.router.navigate(['/dashboard/home']);
-    } else {
-      this.error.set(true);
-      this.loginService.logueado.set(false);
-    }
+    this.loading.set(true);
+    this.error.set(false);
+
+    setTimeout(() => {
+      this.loading.set(false);
+      if (this.username() === this.validUser() && this.password() === this.validPass()) {
+        // Aquí puedes redirigir o mostrar el menú lateral
+        this.loginService.logueado.set(true);
+        this.router.navigate(['/dashboard/home']);
+      } else {
+        this.loginError();
+        this.error.set(true);
+        this.loginService.logueado.set(false);
+      }
+    }, 3000);
   }
 
   loginError() {
-    // return this.error();
+    // alert('Usuario o contraseña incorrectos');
+    this.username.set('');
+    this.password.set('');
+    return this.error();
   }
 }
