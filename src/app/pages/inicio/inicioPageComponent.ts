@@ -4,7 +4,7 @@ import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'inicio-page',
-  imports: [RouterLink],
+  imports: [],
   templateUrl: './inicioPageComponent.html',
   styleUrl: './inicioPageComponent.css',
 })
